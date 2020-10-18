@@ -1,7 +1,6 @@
 const Sauce = require('../model/Sauce')
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
-const { use } = require('../routes/User')
 
 exports.getSauce = (req, res, next) => {
     Sauce.find()
