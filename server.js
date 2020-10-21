@@ -1,5 +1,12 @@
+//Création des variables d'environnement
+const dotenv = require('dotenv').config()
+
+for(k in dotenv){
+  process.env[k] = dotenv[k]
+}
+
 const http = require('http')
-/*const https = require('https')*/
+// const https = require('https')
 const app = require('./app')
 const fs = require('fs')
 
@@ -39,12 +46,11 @@ const errorHandler = error => {
 
 const server = http.createServer(app)
 
-/*
-const server = https.createServer({
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem')
-}, app)
-*/
+// const server = https.createServer({
+//   key: fs.readFileSync('./key.pem'),
+//   cert: fs.readFileSync('./cert.pem')
+// }, app)
+
 
 
 server.on('error', errorHandler)
