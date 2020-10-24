@@ -16,7 +16,7 @@ exports.getOneSauce = (req, res, next) => {
 
 exports.createSauce = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET')
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
     const userId = decodedToken.userId
     const sauceObject = JSON.parse(req.body.sauce)
     const sauce = new Sauce({
@@ -61,7 +61,7 @@ exports.deleteDauce = (req, res, next) => {
 
 exports.likeDisLike = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET')
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
     const userId = decodedToken.userId
     
     Sauce.findOne({_id: req.params.id})
