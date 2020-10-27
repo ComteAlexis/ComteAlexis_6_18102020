@@ -35,7 +35,6 @@ exports.createSauce = (req, res, next) => {
 }
 
 exports.updateSauce = (req, res, next) => {
-    console.log(req.body.sauce)
     const sauceObject = req.file ? {
         ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -66,15 +65,12 @@ exports.likeDisLike = (req, res, next) => {
     
     Sauce.findOne({_id: req.params.id})
         .then(sauce => {
-            console.log(sauce.usersLiked.findIndex(elem => elem === userId))
             const isLike = sauce.usersLiked.findIndex(elem => elem === userId)
             const isDisLike = sauce.usersDisliked.findIndex(elem => elem === userId)
             switch (req.body.like){
                 case 0:
                     if(isLike != -1){
-                        console.log(isLike)
                         sauce.usersLiked.splice(isLike, 1)
-                        console.log('ici ', sauce.usersLiked)
                         sauce.likes = sauce.usersLiked.length
                     }
                     if(isDisLike != -1){
