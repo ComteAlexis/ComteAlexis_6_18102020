@@ -1,0 +1,1 @@
+Dossier contenant les images ajouter dans la route post ou put.
